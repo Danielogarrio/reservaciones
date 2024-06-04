@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservación de Mesas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Reservación de Mesas</h1>
+    <form id="formularioReservacion">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" required>
+
+        <label for="personas">Número de personas:</label>
+        <input type="number" id="personas" min="1" required>
+
+        <label for="mesa">Mesa:</label>
+        <select id="mesa" required>
+            <option value="">Selecciona una mesa</option>
+            <option value="1">Mesa 1</option>
+            <option value="2">Mesa 2</option>
+            <option value="3">Mesa 3</option>
+            <option value="4">Mesa 4</option>
+            <option value="5">Mesa 5</option>
+            <option value="6">Mesa 6</option>
+            <option value="7">Mesa 7</option>
+            <option value="8">Mesa 8</option>
+            <option value="9">Mesa 9</option>
+            <option value="10">Mesa 10</option>
+        </select>
+
+        <button type="submit">Reservar</button>
+    </form>
+    <h2>Reservaciones Hechas</h2>
+    <ul id="listaReservaciones"></ul>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
