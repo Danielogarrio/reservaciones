@@ -35,7 +35,56 @@ document.addEventListener('DOMContentLoaded', () => {
       mostrarReservaciones();
   };
 
-  // se Maneja el evento de envío del formulario //
+//objecto restaurat//
+
+  
+class Restaurante {
+  constructor(nombre, direccion, telefono, especialidades) {
+      this.nombre = nombre;
+      this.direccion = direccion;
+      this.telefono = telefono;
+      this.especialidades = especialidades;
+  }
+
+  mostrarInfo() {
+      console.log(`Nombre: ${this.nombre}, Dirección: ${this.direccion}`);
+  }
+}
+
+const restaurante1 = new Restaurante("sazon oaxaqueño", "3 priv. 5 de mayo,col centro,oaxaca", "9511234589", ["Mole", "Tlayudas", "pozole"]);
+
+delete restaurante1.telefono;
+
+restaurante1.mostrarInfo(); 
+
+for (let propiedad in restaurante1) {
+  console.log(`${propiedad}: ${restaurante1[propiedad]}`);
+}
+
+
+  // array de reservaciones://
+
+  const reservaciones = [
+    { id: 1, nombre: 'Daniel', mesas: 2, hora: '18:00', confirmada: true },
+    { id: 2, nombre: 'Juan', mesas: 1, hora: '19:00', confirmada: false },
+    { id: 3, nombre: 'Luis', mesas: 3, hora: '20:00', confirmada: true },
+    { id: 4, nombre: 'pedro', mesas: 1, hora: '18:30', confirmada: true },
+    { id: 5, nombre: 'Mario', mesas: 2, hora: '19:00', confirmada: false }
+  ];
+
+  const reservacionDeJuan = reservaciones.find(reserva => reserva.nombre === 'Juan');
+console.log(reservacionDeJuan);
+
+//calcula numero de mesas reservadas//
+
+const totalMesasReservadas = reservaciones.reduce((total, reserva) => total + reserva.mesas, 0);
+console.log(totalMesasReservadas); 
+
+
+const nombresDeClientes = reservaciones.map(reserva => reserva.nombre);
+console.log(nombresDeClientes); 
+
+// se Maneja el evento de envío del formulario //
 
   formularioReservacion.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -68,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-    
  //  uso de Fetch API para obtener datos externos tipo simulaciin //
         
 
@@ -82,30 +130,6 @@ fetch(url)
   })
   .then(datos => {
     console.log(datos); // manejar los datos recibidos del servidor
-  })
-  .catch(error => {
-    console.error('Hubo un problema con la operación fetch:', error);
-  });
-
-
-  fetch('https://jsonplaceholder.typicode.com/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      clave1: 'valor1',
-      clave2: 'valor2'
-    })
-  })
-  .then(respuesta => {
-    if (!respuesta.ok) {
-      throw new Error('Respuesta de red no fue ok ' + respuesta.statusText);
-    }
-    return respuesta.json();
-  })
-  .then(datos => {
-    console.log(datos);
   })
   .catch(error => {
     console.error('Hubo un problema con la operación fetch:', error);
