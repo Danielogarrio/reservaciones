@@ -58,13 +58,59 @@ document.addEventListener('DOMContentLoaded', () => {
       formularioReservacion.reset();
   });
 
-  // Mostrar el mensaje de éxito//
+  document.getElementById('reserva').addEventListener('click', function() {
+    Swal.fire({
+        title: '¡Reservación exitosa!',
+        text: 'Su reservación ha sido realizada con éxito.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+});
 
-        mensajeExito.classList.remove('oculto');
-        setTimeout(() => {
-            mensajeExito.classList.add('oculto');
-        }, 3000);
+
     
+ //  uso de Fetch API para obtener datos externos tipo simulaciin //
+        
+
+let url='https://b561547d86a6404c9b49f378d1bd6616.api.mockbin.io/'
+fetch(url)
+  .then(respuesta => {
+    if (!respuesta.ok) {
+      throw new Error('Respuesta de red no fue ok ' + respuesta.statusText);
+    }
+    return respuesta.json(); // analizar los datos JSON de la respuesta
+  })
+  .then(datos => {
+    console.log(datos); // manejar los datos recibidos del servidor
+  })
+  .catch(error => {
+    console.error('Hubo un problema con la operación fetch:', error);
+  });
+
+
+  fetch('https://jsonplaceholder.typicode.com/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      clave1: 'valor1',
+      clave2: 'valor2'
+    })
+  })
+  .then(respuesta => {
+    if (!respuesta.ok) {
+      throw new Error('Respuesta de red no fue ok ' + respuesta.statusText);
+    }
+    return respuesta.json();
+  })
+  .then(datos => {
+    console.log(datos);
+  })
+  .catch(error => {
+    console.error('Hubo un problema con la operación fetch:', error);
+  });
+  
 
   // se muestran las reservaciones al cargar la página //
 
